@@ -20,11 +20,10 @@ The folder Getting-Started hosts very fundamental getting started examples using
 
 For either example a simple step-by-step description is available.
 
-== IO Examples
+The following folders contain various examples - either import them into your eclipse workspace using File -> Import -> General -> Archive File ... or extract them and make use of the Makefile (see the comments within the Makefile for usage instructions).
 
-== Timer Examples
-
-== ADC/DAC Examples
-
-== USIC Examples
+* IO Examples
+* Timer Examples
+* ADC/DAC Examples
+* USIC Examples
 
