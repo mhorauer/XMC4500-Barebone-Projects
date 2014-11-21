@@ -1,0 +1,7 @@
+IO Examples
+===========
+
+The following code samples use the SysTick Timer to periodically scan for button presses. whenever a button press is recognized, the LED next to the button is toggled.
+
+* ﻿link:XMC4500_IO_Simple.tgz[simple IO demo] 
+* link:XMC4500_IO_Flat.tgz[simple IO demo with Circular buffer]
