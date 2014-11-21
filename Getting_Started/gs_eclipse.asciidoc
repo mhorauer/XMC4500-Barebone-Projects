@@ -1,0 +1,86 @@
+Getting Started - Using Eclipse
+===============================
+:author: Roman Beneder, Martin Horauer
+:doctype: article
+:toc: right
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+:docinfo:
+
+An integrated development environment like _Eclipse_ essentially uses the same or similar settings when compared to a bare-bone or Makefile based environment. To ease the setup, we highly recommend to import an existing project and adapt the latter, rather then configuring all the dialogs from scratch.
+
+== Project Import
+
+. Download the following archive file *without* extracting it: link:xmc4500_blinky.tgz[xmc4500_blinky.tgz]
+. Launch _Eclipse_ and select a workspace where you keep your projects.
++
+image::source/ec01.png[]
++ 
+From the menu select _File_ -> _Import..._; in the dialog select _General_ -> _Existing Projects into Workspace_ and click _Next_.
++
+image::source/ec02.png[]
++
+In the next dialog choose _Select archive file_ and browse to the the folder where you downloaded xmc4500_blinky.tgz[xmc4500_blinky.tgz]. Check _XMC4500_Blinky_ and click _Finish_.
++
+image::source/ec03.png[]
++
+A new entry named _XMC4500_Blinky_ will appear in the _Project Explorer_ tab.
+
+== Build
+
+Open up `main.c` and hit the *Build* icon (the one with the hammer symbol).
+
+image::source/ec04.png[]
+
+At the bottom check the output at the _Console_ tab.
+
+== Debug
+
+. Connect the XMC4500 Relax Kit board (the debugger side) to your computer. From the menu select _Run_ -> _Debug Configurations_
++
+image::source/ec05.png[]
++
+. Double click on *GDB SEGGER J-Link Debugging* in order to create a new debug configuration.
++
+image::source/ec06.png[]
++
+. In this dialog switch to the *Debugger* tab and specify the target processor *XMC4500-1024* and click on _Apply_ and _Debug_. Eventually you'll also need to adapt the variable `jlink_path` to point to the location where you installed the SEGGER JLink toolchain.
++
+image::source/ec07.png[]
++
+. Eclipse switches to the _Debug Perspective_, see below. 
++
+image::source/ec08.png[]
++
+To add/remove/edit breakpoints click on the shaded bar in the source view window (1). Use the toolbar to step/run through the code (2). Inspect variables, memory locations, etc. in the variable window to the right (3) whenever the program execution halts.
++
+image::source/ec09.png[]
++
+To terminate the debugging session click the *Terminate* icon in the Debug toolbar (1). Furthermore, you may remove all terminate debug sessions by clicking the respective icon (2) in the debug session window. Finally, you may opt to switch back to the *C/C++* perspective (3). In order to start another debug session, you may simply click the *debug icon* in either prespective.
++
+image::source/ec10.png[]
+
+== Settings
+
+In oder to edit project settings select the project in the _Project Explorer_ -> right-click and select _Properties_. For example, you might opt to enable the creation of a listing file.
+
+image::source/ec11.png[]
+image::source/ec12.png[]
+
+== Project Export
+
+In order to backup your project select it in the _Project Explorer_ -> right-click and select _Export ..._. In the pop-up dialog select _General_ -> _Archive File_ and click on _Next_.
+
+image::source/ec13.png[]
+
+Select the project and specify a name along with a suitable extension (e.g. `.tgz`) to create a compressed archival of the entire project along with its settings.
+
+image::source/ec14.png[]
+
+
+
+

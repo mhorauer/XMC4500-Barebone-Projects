@@ -1,0 +1,98 @@
+Getting Started - Makefile
+==========================
+:author: Roman Beneder, Martin Horauer
+:doctype: article
+:toc: right
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+:docinfo:
+
+== Using a Makefile project
+
+. Download and extract the source code: link:gs_make.zip[gs_make.zip]
+. Open a terminal window (CMD) and change to the directory where you extracted the source code
++
+....
+$ ls
+bin  Makefile  src
+$ ls src
+core_cm4.h  core_cmInstr.h  main.c  system_xmc4500.h  xmc4500-1024.ld  xmc4500.h
+....
+
+
+=== Build the Code
+
+....
+$ make
+[...]
+arm-none-eabi-size bin/main.elf
+   text	   data	    bss	    dec	    hex	filename
+    108	      0	      0	    108	     6c	bin/main.elf
+....
+
+This command built four files in the +bin+ folder.
+
+....
+$ ls bin
+main.bin  main.elf  main.lst  main.map
+....
+
+=== Debug the Program
+
+Connect the XMC Relax Kit (the debugger side) to your computer using a MicroUSB cable.
+
+==============
+[WARNING]
+Using Microsoft Windows you'll need to start the JLinkGDBServer first, before entering the following commands. Select `USB`, specify the `XMC4500-1024` device from Infineon and select `SWD` as debug interface before clicking `OK`.
+
+image::source/segger.png[]
+==============
+
+....
+$ make debug
+[...]
+(gdb) l 30
+25	  PORT1->IOCR0 |= 0x8000; // P1.1 output, push pull   
+26	
+27	  while(1) {
+28	    PORT1->OUT = 0x2; // write 1 to P1.1 -> Port1.1 is low
+29	    wait(i);
+30	    PORT1->OUT = 0x0; // write 0 to P1.1 -> Port 1.1 is high
+31	    wait(i);
+32	    i = i + 5000;
+33	  }
+34	}
+(gdb) b 28
+(gdb) b 30
+(gdb) c
+[... LED OFF]
+(gdb) c
+[... LED ON]
+(gdb) c
+[... LED OFF]
+(gdb) p i
+$1 = 105000
+...
+(gdb) q
+....
+
+TIP: Checkout the GDB commands section of the link:gs_cmd.html[Getting Started - CMD - Bare Bone] documentation.
+
+=== Cleanup
+
+To remove intermediate and generated files type:
+
+....
+$ make clean
+....
+
+=== Reuse
+
+In order to reuse the +Makefile+ for a different project, simply keep the directory structure as is. 
+
+
+

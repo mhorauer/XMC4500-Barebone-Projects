@@ -1,0 +1,23 @@
+Getting Started using the XMC4500
+=================================
+:author: Martin Horauer
+:doctype: article
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+
+
+[square]
+* link:gs_cmd.html[Bare-Bone Command-Line Version]
+* link:gs_make.html[Command Line Version using a Makefile]
+* link:gs_eclipse.html[Eclipse Version]
+
+TIP: Work through all three versions in order to become familiar with the 
+involved tools. Later on you may stick to the toolset and approach of your 
+liking.
+
+
+

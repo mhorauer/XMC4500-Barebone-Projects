@@ -1,0 +1,231 @@
+Getting Started - CMD - Bare Bone
+=================================
+:author: Martin Horauer
+:doctype: article
+:toc: right
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+:docinfo:
+
+== Build
+
+When building a program image we need to distinguish between a +Release+ and +Debug+ version. A release version is optimized without debugging information and used for final deployment to a target in the field. In contrast a debug version is enriched with debugging information and used during development.
+
+. Download and extract the source code: link:gs_cmd.zip[gs_cmd.zip]
+. Open a terminal window (CMD) and change to the directory where you extracted the source code
++
+....
+$ ls
+core_cm4.h  core_cmInstr.h  main.c  system_xmc4500.h  xmc4500-1024.ld  xmc4500.h
+....
+
+NOTE: The above example is kept rather minimalist without proper structuring and initialization.
+
+=== Release Version
+
+. Build the application using the following command sequence:
++
+....
+$ arm-none-eabi-gcc -I. -c -fno-common -O0 -mcpu=cortex-m4 -mthumb main.c
+$ arm-none-eabi-ld -Txmc4500-1024.ld -o main.elf main.o
+$ arm-none-eabi-objcopy -Obinary main.elf main.bin
+....
+
+The first command invokes the compiler +arm-none-eabi-gcc+.
+
+* `-I.` include the present directory as search path for header files
+* `-c` the compiler shall stop after compilation and create only an object (`*.o`) file 
+* `-fno-common`  place uninitialized global variables in the data section of the object file
+* `-O0` perform no optimization
+* `-mcpu` specifies the target CPU
+* `-mthumb` create thumb instructions
+
+[TIP]
+Using options `-O1`, `-O2`, `-O3`, `-Os`, etc. one can influence how the program gets optimized.
+
+Next, we invoke the linker +arm-none-eabi-ld+.
+
+* `-T` specifies the linker/locator file
+* `-o` specifies the output file, here +main.elf+
+
+We use +arm-none-eabi-objcopy+ to transform the +main.elf+ to a binary image format +main.bin+.
+
+=== Debug Version
+
+In practice, debugging is an essential step to investigate how a program executes. To debug the above application from the command-line follow the steps detailed here.
+
+. As before we start by opening a terminal window (CMD) where the application code was extracted.
+. We build the application using almost the same commands. 
+.. When compiling we add the `-g3` switch.
+.. When linking we add the option `-Map main.map` to generate a mapping file. Check the content of the file `main.map`.
+.. We used +objdump+ to create a listing file - check the content of the file `main.lst` for a code listing (assembly interwoven with C).
+.. We use +size+ to determine the size of the used memory sections - our program takes up 100 bytes of program code memory.
++
+....
+$ arm-none-eabi-gcc -I. -c -fno-common -O0 -mcpu=cortex-m4 -mthumb main.c -g3
+$ arm-none-eabi-ld -Txmc4500-1024.ld -nostartfiles -o main.elf main.o -Map main.map
+$ arm-none-eabi-objcopy -Obinary main.elf main.bin
+$ arm-none-eabi-objdump -S main.elf > main.lst
+$ arm-none-eabi-size main.elf
+   text	   data	    bss	    dec	    hex	filename
+    100	      0	      0	    100	     64	main.elf
+....
++
+TIP: Investigate the `*.map` and `*.lst` files for details! Checkout how they correlate with the `main.c` file and the linker script `xmc4500-1024.ld`.
+
+
+== Flashing
+
+. Connect the XMC Relax Kit Evaluation Board using a Micro-USB cable to your computer (via the DEBUG connector)
++
+image::source/connect.jpg[]
++
+. Start the SEGGER J-Link Commander and enter the following commands (output not shown).
+.. we start by specifying the IC soldered to our board using `device xmc4500-1024`
+.. next, we halt the CPU using `h`
+.. we load the program image to the start address of the flash memory using `loadbin main.bin, 0xc000000`
+.. we perform a reset using `r`
+.. we execute the program using `g`
++
+[NOTE]
+Type `?` on the JLinkExe prompt for help and a list of other options.
++
+....
+$ JLinkExe
+J-LINK> device xmc4500-1024
+J-LINK> h
+J-Link> loadbin main.bin, 0xc000000
+J-Link> r
+J-Link> g
+....
++
+image:source/smiley.png[] LED1 shall blink with a slowly varying blink frequency. image:source/smiley.png[]
+
+[NOTE]
+You may press the Reset button or disconnect and reconnect the USB cable - the application will start over since it was flashed to the XMC4500 and will remain there until the image gets either erased or overwritten.
+
+
+== Debugging
+
+. In order to be able to debug the program, we need to invoke a GDB server that communicates with the debug firmware in the debug chip (the latter provides the interface to our target CPU). We need a second terminal window (CMD) and change to the same directory and invoke the following command. Do not terminate this window as long as we are debugging the program.
++
+....
+$ JLinkGDBServer -Device XMC4500-1024 -if SWD
+....
++
+In the other terminal window we invoke the debugger using:
++
+....
+$ arm-none-eabi-gdb -ex "target remote:2331" -ex "monitor halt" -ex "load" -ex "monitor reset" main.elf 
+(gdb) b main
+(gdb) b main.c:29
+(gdb) b main.c:31
+(gdb) c
+(gdb) display i
+(gdb) c
+(gdb) c
+(gdb) c
+...
+....
++
+image:source/smiley.png[] LED1 shall go ON and OFF whenever you enter `c`. image:source/smiley.png[]
+
+The first command invokes the debugger +arm-none-eabi-gdb+ along with the +main.elf+ ELF file and several GDB commands specified using the `-ex` option. These options could also be entered at the GDB prompt in sequence.
+
+* `target remote:2331` establishes a connection to the JLinkGDBServer
+* `monitor halt` halts the target CPU
+* `load` loads the file into the target CPU memory
+* `monitor reset` triggers a reset of the target CPU
+* `b main` sets a breakpoint at the beginning of main()
+* `b main.c:29` sets a breakpoint in file +main.c+ at line 29
+* `c` executes the program up to the first breakpoint
+* `display i` prints the value of the variable +i+
+* `c` executes the program up to the next breakpoint
+
+=== GDB Commands
+
+GDB is a very powerful debugger that is also used by many integrated development environments. Using it via the command-line, it offers a wealth of commands that are explained by typing +help <cmd>+ at the prompt of the debugger. In common practice, only a small subset is required on a regular usage basis.
+
+....
+(gdb) set args     // provide command-line arguments
+(gdb) r            // start program
+(gdb) q            // stop the program and quit the debugger
+...
+(gdb) ############# LISTING CODE #######################
+...
+(gdb) l            // list the next 10 lines of code
+(gdb) l 12         // list code around line 12
+(gdb) l func       // list code around function func
+(gdb) l main.c:10  // list code in file main.c 
+...
+(gdb) ############# BREAKPOINTS ########################
+...
+(gdb) b function   // set breakpoint at start of function
+(gdb) b 12         // set breakpoint at line 12
+(gdb) b file.c:10  // set breakpoint in file.c at line 10
+(gdb) ignore 2 3   // ignore the next 3 crossings of breakpoint 2
+(gdb) info b       // display breakpoints
+(gdb) d break 1    // delete breakpoint 1
+...
+(gdb) ############# EXECUTION ##########################
+...
+(gdb) s            // step into
+(gdb) s 10         // perform 10 single steps
+(gdb) n            // next (step over)
+(gdb) n 5          // execute the next 5 commands
+(gdb) c            // continue the execution of the program
+(gdb) c 4          // continue ignoring the next 4 breakpoints
+...
+(gdb) ############# INSPECT EXPRESSIONS ################
+...
+(gdb) p i          // print the value of variable i
+(gdb) p/s var      // print variable var formatted as string
+(gdb) p/x var      // print variable var formatted as hexadecimal
+(gdb) p/c var      // print variable var formatted as character
+(gdb) display i    // print variable i whenever the execution is halted
+...
+(gdb) ############# INSPECT MEMORY #####################
+...
+(gdb) x/x 0xC000000    // inspect address 0xC000000 in hexadecimal
+(gdb) x/16xw 0xc000000 // inspect 16 words at 0xC000000 in hexadecimal
+...
+(gdb) ############# HELP ###############################
+...
+(gdb) help             // list available commands
+(gdb) help x           // show help on command x
+....
+
+[TIP]
+Inspecting variables and memory locations uses a format modifier as illustrated 
+before (x/FMT address). FMT is a repeat count followed by a format letter and a size letter. Possible format modifiers are: o (octal), x(hex), d(decimal), u(unsigned decimal), t(binary), f(float), a(address), i(instruction), c(char) and s(string). Size letters are b(byte), h(halfword), w(word), g(giant, 8 bytes).
+
+If you want to investigate how the values of a variable evolve over time you could adapt the following example:
+
+....
+(gdb) b 32
+Breakpoint 1 at 0xc000036: file main.c, line 32.
+(gdb) commands 1
+Type commands for breakpoint(s) 1, one per line.
+End with a line saying just "end".
+>silent
+>printf "i = %d\n", i
+>cont
+>end
+(gdb) c
+i = 100000
+i = 105000
+i = 110000
+i = 115000
+i = 120000
+i = 125000
+i = 130000
+...
+press CTRL+C
+(gdb)
+....
+
+
