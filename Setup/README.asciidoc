@@ -1,0 +1,34 @@
+Toolchain Installation & Setup
+==============================
+:author: Roman Beneder, Martin Horauer
+:doctype: article
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+
+[square]
+* link:linux.html[Fedora & Ubuntu]
+* link:mac.html[MAC OS-X]
+* link:win.html[Windows]
+* link:doxygen.html[Doxygen] (all platforms)
+
+== Common Issues
+
+IMPORTANT: There are several rather obvious pitfalls that shall be avoided when installing the tools, see the list below.
+
+- [x] Avoid folder names with spaces at all. Especially using MS Windows install everything below a folder like: +
+....
+C:\xmc
+....
+
+- [x] Using MS Windows beware of virtual folders like the desktop or the Users home directory.
+- [x] Set the `PATH` variable to resemble paths to the folders where your programs reside in. The program name is not part of the path!
+- [x] Eclipse Kepler is supported at present - avoid installing newer eclipse releases.
+- [x] On Linux beware of power saving utilities like `TLP`, this tool might configure the USB port in a way to hinder proper communication with the board. Either disable TLP for USB ports or remove TLP entirely.
+- [x] When modifying the path to JLink in eclipse, beware that eclipse will double the variable in the dialog, edit the path appropriately, i.e.: `${jlink_path}${jlink_path}/${link_gdbserver}` -> `${jlink_path}/${link_gdbserver}`
+- [x] When eclipse pop's up a Warning/Failure dialog - read the *Details* carefully, the solution is usually found when checking/verifying all the details in the message. Most often a missing or wrong `PATH` variable, etc.
+
+

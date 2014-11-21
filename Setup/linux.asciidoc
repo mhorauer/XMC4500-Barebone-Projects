@@ -1,0 +1,110 @@
+Fedora Setup
+============
+:author: Martin Horauer
+:doctype: article
+:toc: right
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+:docinfo:
+
+== GNU Tools for ARM Embedded
+
+Download https://launchpad.net/gcc-arm-embedded/+download[GNU Tools for ARM Embedded Processors] and install it with:
+
+....
+$ mkdir -p $HOME/bin; cd $HOME/bin
+$ tar xjf gcc-arm-none-eabi-4_8-2014q2-20140609-linux.tar.bz2
+$ echo 'export PATH=$HOME/bin/gcc-arm-none-eabi-4_8-2014q2/bin:$PATH' >> $HOME/.bashrc
+$ rm -rf gcc-arm-none-eabi-4_8-2014q2-20140609-linux.tar.bz2 
+....
+
+WARNING: In case a newer version is available, adjust the filenames in the above commands.
+
+To verify the installation enter `arm-none` followed by hitting the TAB krey two times. The output should look similar to the one below.
+
+....
+$ arm-none-eabi-
+arm-none-eabi-addr2line   arm-none-eabi-gcc-4.8.4   arm-none-eabi-nm
+arm-none-eabi-ar          arm-none-eabi-gcc-ar      arm-none-eabi-objcopy
+arm-none-eabi-as          arm-none-eabi-gcc-nm      arm-none-eabi-objdump
+arm-none-eabi-c++         arm-none-eabi-gcc-ranlib  arm-none-eabi-ranlib
+arm-none-eabi-c++filt     arm-none-eabi-gcov        arm-none-eabi-readelf
+arm-none-eabi-cpp         arm-none-eabi-gdb         arm-none-eabi-size
+arm-none-eabi-elfedit     arm-none-eabi-gprof       arm-none-eabi-strings
+arm-none-eabi-g++         arm-none-eabi-ld          arm-none-eabi-strip
+arm-none-eabi-gcc         arm-none-eabi-ld.bfd      
+....
+
+== SEGGER J-Link
+
+Determine, whether you are running a 32-bit or 64-bit kernel version.
+
+....
+$ uname -m
+x86_64      # 64-bit kernel
+i686        # 32-bit kernel
+....
+
+Download and install the respective http://www.segger.com/jlink-software.html[SEGGER J-Link software & documentation pack for Linux]. 
+
+* Using Fedora select the `*.rpm` package.
+* Using Ubuntu select the `*.deb` package.
+
+The following example shows the installation for a 64-bit setup:
+
+....
+$ # Fedora
+$ sudo yum install jlink-4.90.3.x86_64.rpm
+$ # Ubuntu
+$ sudo dpkg -i jlink_4.90.3_x86_64.deb
+....
+
+WARNING: Adapt the RPM or DEB file names in case you downloaded a newer one!
+
+To verify the installation run `JLinkExe` from the command prompt.
+
+== Eclipse-CDT
+
+Eclipse CDT installation on Fedora is straightforward, simply type:
+
+....
+$ # Fedora
+$ sudo yum install eclipse-cdt
+....
+
+Eclipse installation on Ubuntu, however, is less convenient:
+
+======================
+[NOTE] 
+Using Ubuntu download the http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/keplersr2[Eclipse CDT] package and extract it to a suitable directory, e.g., `$HOME/bin`. Modify the path variable to point to the `eclipse` executable, e.g.:
+
+....
+$ echo PATH=$HOME/bin/eclipse:$PATH >> $HOME/.bashrc
+....
+
+TIP: Checkout http://terminaltwister.com/installing-eclipse-kepler-4-3-in-ubuntu-13-04/[this] post.
+======================
+
+=== Eclipse GNU ARM Plugin
+
+Launch Eclipse, e.g., by entering `eclipse &` at a command prompt or via the menu. 
+When started select `Help` -> `Install New Software ...`.
+
+image::source/ec02.png[]
+
+In the dialog click `Add ...` and enter in the _Add Repository_ dialog +GNU ARM+ in the name field and
+http://gnuarmeclipse.sourceforge.net/updates[http://gnuarmeclipse.sourceforge.net/updates] in the location field; click _OK_. Now expand `GNU ARM C/C++ Cross Development Tools` and select the items shown below.
+
+image::source/ec04.png[]
+
+Click `Next` -> `Next` -> ... accept the _User Agreement_ and click `Finish`.
+
+image::source/ec06.png[]
+
+Click `OK` when the _Security Warning_ window appears and finaly, click `OK` to restart eclipse.
+
+

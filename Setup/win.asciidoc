@@ -1,0 +1,78 @@
+Toolchain Installation & Setup
+==============================
+:author: Martin Horauer
+:doctype: article
+:toc: right
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+:docinfo:
+
+Since the standard windows command prompt has rather limited capabilities, I recommend to use the free http://technet.microsoft.com/en-us/scriptcenter/dd742419.aspx[PowerShell]. Furhermore, add a right-click menu to the file explorer (see below).
+
+[WARNING]
+[red]#Beware of installation in paths using Spaces or other non-ASCII characters. Even the default dialogs may result in non-functional setups. Better install the tools in a directory like `C:\essd`.
+Likewise, beware of virtual folders. Make all file-extensions visible. Add the folders to the programs to your `PATH` variable.#
+
+== GNU Tools for ARM Embedded
+
+Download the http://fhe.technikum-wien.at/~horauer/xmc/gcc-arm-none-eabi-4_8-2014q2-20140609-win32.exe[GNU Tools for ARM Embedded installer] and execute it. When asked to modify the +PATH+ variable let the installer do it.
+
+== SEGGER J-Link
+
+Download and install the respective http://www.segger.com/jlink-software.html[SEGGER J-Link software & documentation pack for Windows]
+
+== Eclipse-CDT
+
+Determine whether you are running a 32-bit or 64-bit copy of Windows via the _System Settings_.
+
+First download and install the http://www.java.com/en/download/manual.jsp?locale-=en[JAVA JDK from Oracle].
+
+Next, you'll need a `make.exe` utility. To that end, install either http://www.mingw.org/[MinGW] or http://www.codeblocks.org[CodeBlocks with MinGW]. Copy and rename the `mingw32-make.exe` program in the `MinGW\bin` folder to `make.exe`. Finally, modify the +PATH+ variable of your system to point to this location.
+
+Download and install the respective http://eclipse.org/downloads/packages/eclipse-ide-cc-developers/keplersr2[Eclipse] version.
+
+== Eclipse GNU ARM Plugin
+
+Launch Eclipse; when started select `Help` -> `Install New Software ...`.
+
+image::source/ec02.png[]
+
+In the dialog click `Add ...` and enter in the _Add Repository_ dialog +GNU ARM+ in the name field and
+http://gnuarmeclipse.sourceforge.net/updates[http://gnuarmeclipse.sourceforge.net/updates] in the location field; click _OK_. Now expand `GNU ARM C/C++ Cross Development Tools` and select the items shown below.
+
+image::source/ec04.png[]
+
+Click `Next` -> `Next` -> ... accept the _User Agreement_ and click `Finish`.
+
+image::source/ec06.png[]
+
+Click `OK` when the _Security Warning_ window appears and finaly, click `OK` to restart eclipse.
+
+
+== Additional Software
+
+* Editor: http://www.flos-freeware.ch/notepad2.html[Notepad2], http://notepad-plus-plus.org/[Notepad++], https://wiki.gnome.org/Apps/Gedit[Gedit], http://www.geany.org/[Geany], http://www.sublimetext.com/[Sublime Text]
+* File Archiver: http://www.izarc.org/[IZArc], http://www.7-zip.org/[7-Zip]
+* Development Environment: http://www.codeblocks.org/[Code::Blocks], http://codelite.org/[CodeLite]
+
+*Adding a Command Prompt to the "right-click" Menu of the File Explorer:* +
+
+Edit the Windows Registry: Select `Start Menu` and enter `regedit.exe` - the registry editor shall be launched. Within the registry editor navigate to: `HKEY_LOCAL_MACHINE` -> `Software` -> `Classes` -> `Folder` -> `shell`.
+There, right-click and create a new key called `Command Prompt`. Within the newly created command prompt (select it and right-click) create a new key named `command` and set the value: Right-click (Default) and enter as Value Data:
+
+....
+cmd.exe /k pushd %1
+....
+
+image:w7_cmd.png[width="320",link="w7_cmd.png"] 
+image:w7_cmdprompt.png[width="320",link="w7_cmdprompt.png"] 
+
+[NOTE]
+Eventually, you may need to add `%SystemRoot%\system32\` before the cmd.exe if the executable can't be found.
+
+Now, using the Windows file-explorer you can select a folder, right-click and select `Command Prompt` from the pop-up menu. This will launch a `cmd.exe` shell with a prompt in this directory.
+
