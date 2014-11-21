@@ -1,0 +1,30 @@
+XMC4500-Barebone-Projects
+=========================
+
+This repositories hosts various bare-bone embedded systems projects for the XMC4500 Cortex-M4 microcontroller from Infineon technologies AG. The examples target the http://www.mikrocontroller.net/articles/XMC4500[Relax Kit] evaluation boards available from http://www.ehitex.de/[Hitex] or http://www.infineon.com/[Infineon].
+
+Instead of using the DAVE toolchain, the examples hosted here are cross-platform (Windows, OSX, and Linux) and are developed using a
+
+* plain Makefile approach or a
+* standard Eclipse CDT with the GNU ARM plugin installed.
+
+NOTE: Checkout the documentation in the folder setup on how to install the toolchain. 
+
+== Getting Started
+
+The folder Getting-Started hosts very fundamental getting started examples using
+
+. the command-line
+. a Makefile
+. Eclipse-CDT
+
+For either example a simple step-by-step description is available.
+
+== IO Examples
+
+== Timer Examples
+
+== ADC/DAC Examples
+
+== USIC Examples
+
