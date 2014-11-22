@@ -2,6 +2,6 @@ DEBUG Examples
 ==============
 
 * The link:﻿XMC4500_Debug_Printf.tgz[debug printf] illustrates debugging using the semi-hosting interface. This example routs the _printf()_ output via the Cortex-M4 ITM debug interface to a telnet session listening on port 2333.
-* The link:XMC4500_jlinkRTT_Debug.tar.gz[real-time terminal] example illustrates the https://www.segger.com/jlink-real-time-terminal.html[]Segger Real-Time Terminal] debug interface. 
+* The link:XMC4500_jlinkRTT_Debug.tar.gz[real-time terminal] example illustrates the https://www.segger.com/jlink-real-time-terminal.html[Segger Real-Time Terminal] debug interface. Here input and output is routed via port 19021 - instead of telnet one may use the JLinkRTTClient application therefore.
 
-WARNING: Currently the RTT example only works via the command-line. Extract the folder and type `make debug` in one terminal window and open up `JLinkRTTClient` in another terminal window.
+WARNING: Currently the RTT example only works via the command-line (not with eclipse-cdt - it seems to block IO via a separate port somehow ???). Extract the folder and type `make debug` in one terminal window and open up `JLinkRTTClient` in another terminal window.
