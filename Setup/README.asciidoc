@@ -10,7 +10,7 @@ Toolchain Installation & Setup
 :src: c
 
 [square]
-* link:linux.html[Fedora & Ubuntu]
+* link:linux.asciidoc[Fedora & Ubuntu]
 * link:mac.html[MAC OS-X]
 * link:win.html[Windows]
 * link:plugins.html[Eclipse Plugins] (all platforms)
