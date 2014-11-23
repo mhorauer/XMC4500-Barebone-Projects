@@ -11,9 +11,9 @@ Getting Started using the XMC4500
 
 
 [square]
-* link:gs_cmd.html[Bare-Bone Command-Line Version]
-* link:gs_make.html[Command Line Version using a Makefile]
-* link:gs_eclipse.html[Eclipse Version]
+* link:gs_cmd.asciidoc[Bare-Bone Command-Line Version]
+* link:gs_make.asciidoc[Command Line Version using a Makefile]
+* link:gs_eclipse.asciidoc[Eclipse Version]
 
 TIP: Work through all three versions in order to become familiar with the 
 involved tools. Later on you may stick to the toolset and approach of your 
