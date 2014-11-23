@@ -35,24 +35,6 @@ Next, you'll need a `make.exe` utility. To that end, install either http://www.m
 
 Download and install the respective http://eclipse.org/downloads/packages/eclipse-ide-cc-developers/keplersr2[Eclipse] version.
 
-== Eclipse GNU ARM Plugin
-
-Launch Eclipse; when started select `Help` -> `Install New Software ...`.
-
-image::source/ec02.png[]
-
-In the dialog click `Add ...` and enter in the _Add Repository_ dialog +GNU ARM+ in the name field and
-http://gnuarmeclipse.sourceforge.net/updates[http://gnuarmeclipse.sourceforge.net/updates] in the location field; click _OK_. Now expand `GNU ARM C/C++ Cross Development Tools` and select the items shown below.
-
-image::source/ec04.png[]
-
-Click `Next` -> `Next` -> ... accept the _User Agreement_ and click `Finish`.
-
-image::source/ec06.png[]
-
-Click `OK` when the _Security Warning_ window appears and finaly, click `OK` to restart eclipse.
-
-
 == Additional Software
 
 * Editor: http://www.flos-freeware.ch/notepad2.html[Notepad2], http://notepad-plus-plus.org/[Notepad++], https://wiki.gnome.org/Apps/Gedit[Gedit], http://www.geany.org/[Geany], http://www.sublimetext.com/[Sublime Text]

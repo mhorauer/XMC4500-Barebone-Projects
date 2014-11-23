@@ -59,22 +59,4 @@ $ sudo echo "$HOME/bin/eclipse" >> /etc/paths
 You may draw the `Eclipse.app` into the launcher.
 
 
-== Eclipse GNU ARM Plugin
-
-Launch Eclipse, e.g., by entering `eclipse &` at a command prompt or via the menu. 
-When started select `Help` -> `Install New Software ...`.
-
-image::source/ec02.png[]
-
-In the dialog click `Add ...` and enter in the _Add Repository_ dialog +GNU ARM+ in the name field and
-http://gnuarmeclipse.sourceforge.net/updates[http://gnuarmeclipse.sourceforge.net/updates] in the location field; click _OK_. Now expand `GNU ARM C/C++ Cross Development Tools` and select the items shown below.
-
-image::source/ec04.png[]
-
-Click `Next` -> `Next` -> ... accept the _User Agreement_ and click `Finish`.
-
-image::source/ec06.png[]
-
-Click `OK` when the _Security Warning_ window appears and finaly, click `OK` to restart eclipse.
-
 

@@ -1,0 +1,49 @@
+Eclipse Plugins
+===============
+:author: Martin Horauer
+:doctype: article
+:toc: right
+:icons: font
+:data-uri:
+:lang: en
+:date: 2014
+:encoding: iso-8859-1
+:src: c
+:docinfo:
+
+== Eclipse GNU ARM Plugin
+
+Launch Eclipse, e.g., by entering `eclipse &` at a command prompt or via the menu. 
+When started select `Help` -> `Install New Software ...`.
+
+image::source/ec02.png[]
+
+In the dialog click `Add ...` and enter in the _Add Repository_ dialog +GNU ARM+ in the name field and
+http://gnuarmeclipse.sourceforge.net/updates[http://gnuarmeclipse.sourceforge.net/updates] in the location field; click _OK_. Now expand `GNU ARM C/C++ Cross Development Tools` and select the items shown below.
+
+image::source/ec04.png[]
+
+Click `Next` -> `Next` -> ... accept the _User Agreement_ and click `Finish`.
+
+image::source/ec06.png[]
+
+Click `OK` when the _Security Warning_ window appears and finaly, click `OK` to restart eclipse.
+
+== EMBSYS Register View Plugin
+
+Launch Eclipse, e.g., by entering `eclipse &` at a command prompt or via the menu. 
+When started select `Help` -> `Install New Software ...`.
+
+image::source/embreg01.png[]
+image::source/embreg02.png[]
+
+Confirm all dialogs.
+
+Download and extract the link:infineon_svd.zip[SVD files] for the Infineon XMC controllers and copy the entire folder to the Eclipse plugins folder (on my Linux computer it is located in $HOME/.eclipse/org.eclipse.platform_793567567_linux_gtk_x86_64/plugins/org.eclipse.cdt.embsysregview.data_0.2.4.r168/data/SVD(CMSIS)/).
+
+Restart Eclipse and switch to the _Debug Perspective_. Now from the menu select _Window -> Show View -> Other ..._. In the dialog open _Debug -> Embsys Registers_.
+
+image::source/embreg03.png[]
+image::source/embreg04.png[]
+
+
