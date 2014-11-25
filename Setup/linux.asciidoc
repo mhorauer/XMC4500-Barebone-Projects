@@ -1,5 +1,5 @@
-Fedora Setup
-============
+Fedora & Ubuntu Setup
+=====================
 :author: Martin Horauer
 :doctype: article
 :toc: right
