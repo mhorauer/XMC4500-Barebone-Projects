@@ -8,7 +8,7 @@ Instead of using the DAVE toolchain, the examples hosted here are cross-platform
 * plain Makefile approach or a
 * standard Eclipse CDT with the GNU ARM plugin installed.
 
-NOTE: Checkout the documentation in the folder link:setup[Setup] on how to install the toolchain. 
+NOTE: Checkout the documentation in the folder link:setup/README.asciidoc[Setup] on how to install the toolchain. 
 
 == Getting Started
 
