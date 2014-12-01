@@ -1,7 +1,63 @@
-IO Examples
-===========
+General Purpose Input/Output Example
+====================================
+:author: Martin Horauer
+:email: horauer@technikum-wien.at
+:brand: UAS Technikum Wien
+:doctype: article
+:icons: font
+:toc: right
+:nofooter:
+:data-uri:
+:date: 2014/15
+:revision: 0.1
+:lang: en
+:encoding: utf-8
 
-The following code samples use the SysTick Timer to periodically scan for button presses. whenever a button press is recognized, the LED next to the button is toggled.
 
-* ﻿link:XMC4500_IO_Simple.tgz[simple IO demo] 
-* link:XMC4500_IO_Flat.tgz[simple IO demo with Circular buffer]
+== Instructions
+
+You may either import the projects below into eclipse or extract it and make use of the `Makefile`:
+
+....
+$ make        # build the project
+$ make debug  # debug the project
+$ make flash  # simply flash the project to the device
+$ make clean  # perform a cleanup of intermediate generated files
+....
+
+WARNING: On MS Windows prior to debugging with the `Makefile` (as described before using `make debug`) start the JLinkGDBServer as described in the link:../gs/gs_make.html[Getting Started using a Makefile].
+
+== Simple IO
+
+The link:XMC4500_IO_Simple.tgz[simple IO example] illustrates read and write operations to IO ports. In particular, the buttons are read periodically (using a Systick Timer interrupt routine). When a button click (press -> release) is recognized the LED next to the button is toggled.
+
+
+== Flat IO
+
+The link:XMC4500_IO_Flat.tgz[flat IO example] decouples the button reads in the service routine from toggling the LEDs in the application using a circular buffer in between. Whenever a button click is recognized in the timer service routine, a value representing the button is placed in the circular buffer. +
+The background loop essentially checks whether a button event is available in the circular buffer. In case no event is available the CPU enters sleep mode. Whenever, a timer service request occurs, the CPU is awakened and processes the background-loop again. In case a button event is available in the circular buffer, it is obtained, evaluated and the respective LED is toggled.
+
+== Structured IO 
+
+The link:XMC4500_IO_Structured.tgz[structured IO example] splits the code into three logical layers:
+
+. An _application layer_ containing the `main()` routine.
+. A _library layer_ that provides a collection of various functions (e.g. the circular buffer, etc.).
+. A _device layer_ where the actual registers are accessed and the service routines reside.
+
+== Analysis and Discussion
+
+Table <<tab1,1>> summarizes the impact on the program size using various optimization options. As one can see, the additional circular buffer and the various additional functions add approximately 15% from the simple to the flat implementation. Structuring the code into multiple layers adds additional 10% increase in program size. The benefits, however, are better structured, more flexible, and better portable code.
+
+
+[[tab1]]
+.Program Size (#bytes) using various Optimization Options
+[format="csv",options="header",frame="all",colspecs="rccccc"]
+|===================================================
+Implementation,-O0,-O1,-O2,-O3,-Os
+Simple,2556,1684,1620,2064,1534
+Flat,3022,2006,1958,2270,1812
+Structured,3300,2232,2152,2592,1982
+|===================================================
+
+
