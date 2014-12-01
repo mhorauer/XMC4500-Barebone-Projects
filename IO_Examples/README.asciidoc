@@ -25,7 +25,7 @@ $ make flash  # simply flash the project to the device
 $ make clean  # perform a cleanup of intermediate generated files
 ....
 
-WARNING: On MS Windows prior to debugging with the `Makefile` (as described before using `make debug`) start the JLinkGDBServer as described in the link:../gs/gs_make.html[Getting Started using a Makefile].
+WARNING: On MS Windows prior to debugging with the `Makefile` (as described before using `make debug`) start the JLinkGDBServer.
 
 == Simple IO
 
