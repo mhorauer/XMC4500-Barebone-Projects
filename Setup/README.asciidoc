@@ -10,11 +10,11 @@ Toolchain Installation & Setup
 :src: c
 
 [square]
-* link:linux.html[Fedora & Ubuntu]
-* link:mac.html[MAC OS-X]
-* link:win.html[Windows]
-* link:plugins.html[Eclipse Plugins] (all platforms)
-* link:doxygen.html[Doxygen] (all platforms)
+* link:linux.asciidoc[Fedora & Ubuntu]
+* link:mac.asciidoc[MAC OS-X]
+* link:win.asciidoc[Windows]
+* link:plugins.asciidoc[Eclipse Plugins] (all platforms)
+* link:doxygen.asciidoc[Doxygen] (all platforms)
 
 == Common Issues
 

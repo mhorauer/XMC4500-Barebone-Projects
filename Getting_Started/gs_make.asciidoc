@@ -80,7 +80,7 @@ $1 = 105000
 (gdb) q
 ....
 
-TIP: Checkout the GDB commands section of the link:gs_cmd.html[Getting Started - CMD - Bare Bone] documentation.
+TIP: Checkout the GDB commands section of the link:gs_cmd.asciidoc[Getting Started - CMD - Bare Bone] documentation.
 
 === Cleanup
 

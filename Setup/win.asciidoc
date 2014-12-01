@@ -1,5 +1,5 @@
-Toolchain Installation & Setup
-==============================
+Windows Toolchain Installation & Setup
+======================================
 :author: Martin Horauer
 :doctype: article
 :toc: right
