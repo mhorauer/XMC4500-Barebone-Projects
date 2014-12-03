@@ -34,27 +34,3 @@ First download and install the http://www.java.com/en/download/manual.jsp?locale
 Next, you'll need a `make.exe` utility. To that end, install either http://www.mingw.org/[MinGW] or http://www.codeblocks.org[CodeBlocks with MinGW]. Copy and rename the `mingw32-make.exe` program in the `MinGW\bin` folder to `make.exe`. Finally, modify the +PATH+ variable of your system to point to this location.
 
 Download and install the respective http://eclipse.org/downloads/packages/eclipse-ide-cc-developers/keplersr2[Eclipse] version.
-
-== Additional Software
-
-* Editor: http://www.flos-freeware.ch/notepad2.html[Notepad2], http://notepad-plus-plus.org/[Notepad++], https://wiki.gnome.org/Apps/Gedit[Gedit], http://www.geany.org/[Geany], http://www.sublimetext.com/[Sublime Text]
-* File Archiver: http://www.izarc.org/[IZArc], http://www.7-zip.org/[7-Zip]
-* Development Environment: http://www.codeblocks.org/[Code::Blocks], http://codelite.org/[CodeLite]
-
-*Adding a Command Prompt to the "right-click" Menu of the File Explorer:* +
-
-Edit the Windows Registry: Select `Start Menu` and enter `regedit.exe` - the registry editor shall be launched. Within the registry editor navigate to: `HKEY_LOCAL_MACHINE` -> `Software` -> `Classes` -> `Folder` -> `shell`.
-There, right-click and create a new key called `Command Prompt`. Within the newly created command prompt (select it and right-click) create a new key named `command` and set the value: Right-click (Default) and enter as Value Data:
-
-....
-cmd.exe /k pushd %1
-....
-
-image:w7_cmd.png[width="320",link="w7_cmd.png"] 
-image:w7_cmdprompt.png[width="320",link="w7_cmdprompt.png"] 
-
-[NOTE]
-Eventually, you may need to add `%SystemRoot%\system32\` before the cmd.exe if the executable can't be found.
-
-Now, using the Windows file-explorer you can select a folder, right-click and select `Command Prompt` from the pop-up menu. This will launch a `cmd.exe` shell with a prompt in this directory.
-
