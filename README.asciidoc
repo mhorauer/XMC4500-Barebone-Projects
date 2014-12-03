@@ -1,7 +1,7 @@
 XMC4500-Barebone-Projects
 =========================
 
-This repositories hosts various bare-bone embedded systems projects for the XMC4500 Cortex-M4 microcontroller from Infineon technologies AG. The examples target the http://www.mikrocontroller.net/articles/XMC4500[Relax Kit] evaluation boards available from http://www.ehitex.de/[Hitex] or http://www.infineon.com/[Infineon].
+This repository hosts various bare-bone embedded systems projects for the XMC4500 Cortex-M4 microcontroller from Infineon technologies AG. The examples target the http://www.mikrocontroller.net/articles/XMC4500[Relax Kit] evaluation boards available from http://www.ehitex.de/[Hitex] or http://www.infineon.com/[Infineon].
 
 Instead of using the DAVE toolchain, the examples hosted here are cross-platform (Windows, OSX, and Linux) and are developed using a
 
