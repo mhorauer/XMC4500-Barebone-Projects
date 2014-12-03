@@ -27,4 +27,5 @@ The following folders contain various examples - either import them into your ec
 * Timer Examples
 * ADC/DAC Examples
 * USIC Examples
+* link:USB_Examples/README.asciidoc[USB Examples]
 

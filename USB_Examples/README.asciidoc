@@ -1,0 +1,39 @@
+USB Examples
+============
+:author: Martin Horauer
+:email: horauer@technikum-wien.at
+:brand: UAS Technikum Wien
+:doctype: article
+:icons: font
+:toc: right
+:nofooter:
+:data-uri:
+:date: 2014/15
+:revision: 0.1
+:lang: en
+:encoding: utf-8
+
+
+== USB Echo Example 
+
+The link:XMC4500_USBCDC_Echo.tgz[USB Echo Example] sends characters back to a computer connected via the native USB interface in CDC mode. 
+
+*Linux* +
+
+....
+$ stty -F /dev/ttyACM0 115200
+$ cat /dev/ttyACM0
+....
+
+Open a second terminal and enter:
+
+....
+$ echo "Hello World" > /dev/ttyACM0
+....
+
+*Windows* +
+
+You'll need to install the device driver in the `USBVCOMDRV` subfolder. Use any terminal program you like, e.g.:
+http://realterm.sourceforge.net/[Realterm], http://www.der-hammer.info/terminal/[HTerm], ...
+
+
