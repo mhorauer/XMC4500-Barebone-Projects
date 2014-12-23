@@ -29,7 +29,7 @@ WARNING: On MS Windows prior to debugging with the `Makefile` (as described befo
 
 == IO Eval
 
-Simple example that configures P0_0 as output and toggles it within the endless loop. The measurement below using the RleaxKit Eval board reveals a period of approximately 150ns.
+Simple example that configures P0_0 as output and toggles it within the endless loop. The measurement below using the RelaxKit Eval board reveals a period of approximately 150ns.
 
 image::io_eval.png[]
 
