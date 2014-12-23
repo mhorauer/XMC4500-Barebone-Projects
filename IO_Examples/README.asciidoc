@@ -27,6 +27,12 @@ $ make clean  # perform a cleanup of intermediate generated files
 
 WARNING: On MS Windows prior to debugging with the `Makefile` (as described before using `make debug`) start the JLinkGDBServer.
 
+== IO Eval
+
+Simple example that configures P0_0 as output and toggles it within the endless loop. The measurement below using the RleaxKit Eval board reveals a period of approximately 150ns.
+
+image::io_eval.png[]
+
 == Simple IO
 
 The link:XMC4500_IO_Simple.tgz[simple IO example] illustrates read and write operations to IO ports. In particular, the buttons are read periodically (using a Systick Timer interrupt routine). When a button click (press -> release) is recognized the LED next to the button is toggled.
@@ -37,7 +43,7 @@ The link:XMC4500_IO_Simple.tgz[simple IO example] illustrates read and write ope
 The link:XMC4500_IO_Flat.tgz[flat IO example] decouples the button reads in the service routine from toggling the LEDs in the application using a circular buffer in between. Whenever a button click is recognized in the timer service routine, a value representing the button is placed in the circular buffer. +
 The background loop essentially checks whether a button event is available in the circular buffer. In case no event is available the CPU enters sleep mode. Whenever, a timer service request occurs, the CPU is awakened and processes the background-loop again. In case a button event is available in the circular buffer, it is obtained, evaluated and the respective LED is toggled.
 
-== Structured IO 
+== Structured IO
 
 The link:XMC4500_IO_Structured.tgz[structured IO example] splits the code into three logical layers:
 
@@ -59,5 +65,3 @@ Simple,2556,1684,1620,2064,1534
 Flat,3022,2006,1958,2270,1812
 Structured,3300,2232,2152,2592,1982
 |===================================================
-
-
