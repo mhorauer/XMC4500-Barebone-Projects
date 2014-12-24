@@ -1,0 +1,22 @@
+Timer Examples
+==============
+:author: Martin Horauer
+:email: horauer@technikum-wien.at
+:brand: UAS Technikum Wien
+:doctype: article
+:icons: font
+:toc: right
+:nofooter:
+:data-uri:
+:date: 2014/15
+:revision: 0.1
+:lang: en
+:encoding: utf-8
+
+
+== Systick Timer Example
+
+This example uses the 24 bit Systick Timer (core peripheral) to implement a blocking
+_delayus() function and a non-blocking _timeout() function.
+
+image::systick.png[]
