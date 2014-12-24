@@ -17,6 +17,6 @@ Timer Examples
 == Systick Timer Example
 
 This example uses the 24 bit Systick Timer (core peripheral) to implement a blocking
-_delayus() function and a non-blocking _timeout() function.
+`_delayus()` function and a non-blocking `_timeout()` function.
 
 image::systick.png[]
