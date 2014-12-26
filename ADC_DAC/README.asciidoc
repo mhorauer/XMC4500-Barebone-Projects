@@ -1,0 +1,30 @@
+DAC & ADC Examples
+==================
+:author: Martin Horauer
+:email: horauer@technikum-wien.at
+:brand: UAS Technikum Wien
+:doctype: article
+:icons: font
+:toc: right
+:nofooter:
+:data-uri:
+:date: 2014/15
+:revision: 0.1
+:lang: en
+:encoding: utf-8
+
+== ADC Examples
+
+TIP: Infineon provides several bare-bone ADC examples: Checkout the respective http://www.infineon.com/cms/en/product/microcontrollers/32-bit-xmc4000-industrial-microcontrollers-arm%EF%BF%BDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFD-cortex!22-m4/channel.html?channel=db3a30433580b3710135a03abaf9385e&tab=2#db3a304412b407950112b4095ddb01f4[documentation and example code].
+
+
+
+== DAC Examples
+
+This examples shows some simplistic square and triangle functions generated via
+callbacks.
+
+image::dac.png[]
+
+NOTE: The XMC4500 provides a powerful pattern generator that is better suited
+for such purposes.
